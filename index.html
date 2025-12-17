@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Amirah's Space</title>
+
+<style>
+
+/* 🌸 BASE BODY */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  animation: fadeIn 1.2s ease;
+  background-image: url("pictures/bg1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+/* 🌸 HEADING */
+.heading-wrapper {
+  text-align: center;
+  margin-bottom: 10px;
+  z-index: 1;
+}
+h1 {
+  font-size: 32px;
+  font-family: "Lucida Handwriting", cursive;
+  color: #8f4a63;
+  margin: 0;
+  text-shadow: 0 0 8px rgba(143,74,99,0.35);
+}
+
+/* 🌸 MENU BUTTON */
+#menuBtn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Garamond", serif;
+  font-weight: bold;
+  color:#8f4a63;
+  background: linear-gradient(to bottom right, rgba(227,204,214,0.4), rgba(255,255,255,0.6));
+  border: 1.6px solid rgba(143,74,99,0.6);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+}
+
+/* 🌸 NAV */
+#nav {
+  position: fixed;
+  top: 0;
+  left: -230px;
+  width: 230px;
+  height: 100vh;
+  padding-top: 100px;
+  background: linear-gradient(to bottom, rgba(227,204,214,0.4), rgba(255,255,255,0.5));
+  backdrop-filter: blur(12px);
+  border-right: 1.6px solid rgba(143,74,99,0.6);
+  font-family: "Garamond", serif;
+  transition: 0.4s;
+  z-index: 999;
+}
+#nav.open { left: 0; }
+
+.nav-item {
+  padding: 14px 25px;
+  cursor: pointer;
+  color:#8f4a63;
+  font-size:16px;
+}
+.nav-item:hover {
+  background: rgba(240,218,226,0.6);
+  border-radius: 10px;
+}
+
+/* 🌸 VIDEO FRAME */
+.video-frame {
+  width: 620px;
+  height: 370px;
+  margin: 20px auto;
+  position: relative;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(143,74,99,0.4);
+  border-radius: 12px;
+}
+.video-frame video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 350px;
+  object-fit: cover;
+}
+
+/* 🌸 VIDEO BUTTON */
+.video-pause-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 14px;
+  font-family:"Garamond", serif;
+  font-size:14px;
+  font-weight:bold;
+  color:#8f4a63;
+  background: linear-gradient(to bottom right, rgba(227,204,214,0.4), rgba(255,255,255,0.6));
+  border: 1.5px solid rgba(143,74,99,0.6);
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+}
+
+/* 🌸 TEXT BOX WITH QUOTE */
+.text-section {
+  background: linear-gradient(to bottom right, rgba(227,204,214,0.35), rgba(255,255,255,0.45));
+  border: 1.6px solid rgba(143,74,99,0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  max-width: 800px;
+  padding: 30px 25px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  margin: 20px auto;
+}
+.text-section p {
+  font-size: 16px;
+  color: #8f4a63;
+  margin-bottom: 20px;
+}
+.quote-section {
+  font-style: italic;
+  font-size: 18px;
+  color: #DE1A58;
+  margin-bottom: 20px;
+}
+
+/* 🌸 SOCIAL ICONS UNDER QUOTE */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.social-icons a img {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.social-icons a img:hover {
+  transform: scale(1.25);
+}
+
+/* 🌸 SNAPBOX POPUP */
+#snapbox {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  flex-direction: column;
+  font-family: "Garamond", serif; /* Snapbox font */
+}
+#snapbox::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+  z-index: 0;
+}
+#snapbox > * {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to bottom right, #fff, #f7f0f3);
+  padding: 30px 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+#snapbox h2 {
+  font-size: 26px;
+  color: #8f4a63;
+  margin-bottom: 20px;
+  text-shadow: 0 0 6px rgba(143,74,99,0.25);
+}
+#snapbox input {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1.5px solid #8f4a63;
+  margin-bottom: 15px;
+  font-size: 16px;
+  width: 200px;
+  text-align: center;
+}
+#snapbox button {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  background-color: #8f4a63;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#snapbox button:hover {
+  background-color: #a1536a;
+}
+
+/* 🌸 FOOTER */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(227,204,214,0.35), rgba(255,255,255,0.5));
+  border-top: 1.6px solid rgba(143,74,99,0.6);
+  font-family: "Garamond", serif;
+  color:#8f4a63;
+  margin-top:auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🌸 SNAPBOX POPUP -->
+<div id="snapbox">
+  <h2>Enter Your Name</h2>
+  <input type="text" id="username" placeholder="Your Name">
+  <button onclick="enterSite()">Enter</button>
+</div>
+
+<div id="menuBtn">MENU</div>
+
+<div id="nav">
+  <div class="nav-item" onclick="location.href='index.html'">Home</div>
+  <div class="nav-item" onclick="location.href='about me.html'">About Me</div>
+  <div class="nav-item" onclick="location.href='experience.html'">Experience</div>
+  <div class="nav-item" onclick="location.href='education.html'">Education</div>
+  <div class="nav-item" onclick="location.href='family.html'">Family</div>
+  <div class="nav-item" onclick="location.href='favourites.html'">Favourites</div>
+  <div class="nav-item" onclick="location.href='friends.html'">Friends</div>
+  <div class="nav-item" onclick="location.href='gallery.html'">Gallery</div>
+</div>
+
+<div class="heading-wrapper">
+  <h1>⋆｡‧˚ʚ WELCOME TO AMIRAH'S SPACES! ɞ˚‧｡⋆</h1>
+</div>
+
+<div class="video-frame">
+  <video id="mainVideo" loop>
+    <source src="pictures/landscape4.mov" type="video/mp4">
+  </video>
+  <button class="video-pause-btn" onclick="toggleVideo()">. ♬ ݁˖</button>
+</div>
+
+<div class="text-section">
+  <p>Welcome to my personal space! Here you can explore everything about me.</p>
+  <div class="quote-section">
+    “We are not what we know but what we are willing to learn.”
+  </div>
+
+  <!-- 🌸 SOCIAL ICONS UNDER QUOTE -->
+  <div class="social-icons">
+    <a href="https://instagram.com/mirahhus" target="_blank">
+      <img src="pictures/ig.jpg" alt="Instagram">
+    </a>
+    <a href="https://www.tiktok.com/@4mirrorh" target="_blank">
+      <img src="pictures/tt2.jpg" alt="TikTok">
+    </a>
+    <a href="https://wa.me/601118787282" target="_blank">
+      <img src="pictures/wsp2.jpg" alt="WhatsApp">
+    </a>
+  </div>
+</div>
+
+<footer>
+© 2025 This website is for educational purpose only | Wan Amirah Husni Binti Wan Anuar
+</footer>
+
+<script>
+menuBtn.onclick = () => nav.classList.toggle("open");
+
+function toggleVideo(){
+  const vid = document.getElementById('mainVideo');
+  vid.paused ? vid.play() : vid.pause();
+}
+
+function enterSite() {
+  const name = document.getElementById('username').value.trim();
+  if(name !== "") {
+    document.getElementById('snapbox').style.display = 'none';
+    document.getElementById('mainVideo').play();
+  } else {
+    alert("Please enter your name!");
+  }
+}
+</script>
+
+</body>
+</html>

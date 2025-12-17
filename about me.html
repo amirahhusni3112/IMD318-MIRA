@@ -1,0 +1,301 @@
+<!DOCTYPE html>   
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About Me - Amirah</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:url("pictures/bg2.jpg") no-repeat center center fixed;
+  background-size:cover;
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* 🌸 HEADING */
+h1{
+  text-align:center;
+  font-family:"Lucida Handwriting", cursive;
+  color:#8f4a63;
+  margin:30px 0;
+  text-shadow:0 0 8px rgba(154,95,116,0.35);
+  position:relative;
+  z-index:1;
+}
+
+/* 🌸 MENU BUTTON */
+#menuBtn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  padding:10px 20px;
+  border-radius:12px;
+  cursor:pointer;
+  font-family:"Garamond", serif;
+  font-weight:bold;
+  font-size:15px;
+  color:#9a5f74;
+  background:linear-gradient(to bottom right, rgba(227,204,214,0.3), rgba(255,255,255,0.55));
+  border:1.6px solid rgba(154,95,116,0.55);
+  backdrop-filter:blur(6px);
+  z-index:9999;
+}
+#menuBtn:hover{
+  background:rgba(255,255,255,0.9);
+}
+
+/* 🌸 NAV */
+#nav{
+  position:fixed;
+  top:0;
+  left:-230px;
+  width:230px;
+  height:100vh;
+  padding-top:100px;
+  background:linear-gradient(to bottom, rgba(227,204,214,0.35), rgba(255,255,255,0.45));
+  backdrop-filter:blur(12px);
+  border-right:1.6px solid rgba(154,95,116,0.55);
+  font-family:"Garamond", serif;
+  font-size:15px;
+  color:#9a5f74;
+  transition:0.4s;
+  z-index:999;
+}
+#nav.open{left:0;}
+
+.nav-item{
+  padding:14px 25px;
+  cursor:pointer;
+}
+.nav-item:hover{
+  background:rgba(240,218,226,0.6);
+  border-radius:10px;
+}
+
+/* 🌸 MAIN LAYOUT */
+.main-wrap{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  max-width:1200px;
+  margin:40px auto;
+  align-items:stretch;
+  position:relative;
+  z-index:1;
+}
+
+/* 🌸 LEFT PHOTO FRAME */
+.photo-frame{
+  width:310px;
+  height:100%;
+  background:white;
+  padding:12px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  display:flex;
+  overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.photo-frame:hover{
+  transform: scale(1.05);
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* 🌸 MAIN INFO BOX */
+.main-info-box{
+  width:400px;
+  padding:20px;
+  border-radius:20px;
+  background:linear-gradient(to bottom right, rgba(255,255,255,0.35), rgba(227,204,214,0.25));
+  box-shadow:0 0 20px rgba(255,182,193,0.4);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.main-info-box:hover{
+  transform: translateY(-4px);
+  box-shadow:0 12px 25px rgba(185,125,148,0.35);
+}
+
+/* 🌸 INTRO BOX */
+.intro-box{
+  background:linear-gradient(to bottom right, rgba(227,204,214,0.45), rgba(255,255,255,0.55));
+  border:1.6px solid rgba(154,95,116,0.55);
+  backdrop-filter:blur(12px);
+  border-radius:15px;
+  padding:12px 15px;
+}
+.intro-box p{
+  color:#5c2a36;
+  margin:0;
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* 🌸 SUB BOXES */
+.sub-box{
+  background:linear-gradient(to bottom right, rgba(227,204,214,0.35), rgba(255,255,255,0.45));
+  border:1.6px solid rgba(154,95,116,0.55);
+  backdrop-filter:blur(12px);
+  border-radius:15px;
+  padding:12px 15px;
+}
+.sub-box h2{
+  margin-top:0;
+  font-family:"Georgia", serif;
+  color:#9a5f74;
+  border-bottom:1px solid rgba(154,95,116,0.35);
+}
+.sub-box ul{
+  margin:8px 0 0;
+  list-style:none;
+  padding-left:0;
+  color:#5c2a36;
+}
+.sub-box li{
+  margin-bottom:4px;
+  padding-left:14px;
+  position:relative;
+  font-size:14px;
+}
+.sub-box li::before{
+  content:"»";
+  position:absolute;
+  left:0;
+}
+
+/* 🌸 RIGHT PHOTO FRAME */
+.side-box-right{
+  width:310px;
+  display:flex;
+  align-items:stretch;
+}
+.side-photo-frame{
+  width:100%;
+  height:100%;
+  background:white;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+  overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.side-photo-frame:hover{
+  transform: scale(1.05);
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* 🌸 IMAGES */
+.photo-frame img,
+.side-photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* 🌸 FOOTER */
+footer{
+  text-align:center;
+  padding:15px;
+  background:linear-gradient(to top, rgba(227,204,214,0.3), rgba(255,255,255,0.5));
+  backdrop-filter:blur(10px);
+  border-top:1.6px solid rgba(154,95,116,0.55);
+  font-family:"Garamond", serif;
+  font-size:14px;
+  color:#9a5f74;
+  margin:0;
+}
+
+/* 🌸 RESPONSIVE */
+@media(max-width:900px){
+  .main-wrap{
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+  }
+  .photo-frame,
+  .side-box-right,
+  .main-info-box{
+    width:90%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="menuBtn">MENU</div>
+
+<div id="nav">
+  <div class="nav-item" onclick="location.href='index.html'">Home</div>
+  <div class="nav-item" onclick="location.href='about me.html'">About Me</div>
+  <div class="nav-item" onclick="location.href='experience.html'">Experience</div>
+  <div class="nav-item" onclick="location.href='education.html'">Education</div>
+  <div class="nav-item" onclick="location.href='family.html'">Family</div>
+  <div class="nav-item" onclick="location.href='favourites.html'">Favourites</div>
+  <div class="nav-item" onclick="location.href='friends.html'">Friends</div>
+  <div class="nav-item" onclick="location.href='gallery.html'">Gallery</div>
+</div>
+
+<h1>⋆˚࿔ All About Amirah 𝜗𝜚˚⋆</h1>
+
+<div class="main-wrap">
+
+  <div class="photo-frame">
+    <img src="pictures/instagram.jpg">
+  </div>
+
+  <div class="main-info-box">
+    <div class="intro-box">
+      <p>My name is Wan Amirah Husni Binti Wan Anuar, and I was born on 31 December 2005. I live in Setiu, Terengganu, and I am the second of eight siblings. I love soft colours, calm aesthetics, and exploring new places.</p>
+    </div>
+
+    <div class="sub-box">
+      <h2>Things I Love</h2>
+      <ul>
+        <li>K-dramas</li>
+        <li>Sunsets</li>
+        <li>Exploring new places</li>
+        <li>Matcha</li>
+        <li>Cozy cafes</li>
+        <li>Playing Roblox</li>
+      </ul>
+    </div>
+
+    <div class="sub-box">
+      <h2>Goals</h2>
+      <ul>
+        <li>To become a better version of myself</li>
+        <li>To succeed in my studies and career</li>
+        <li>To make my family proud</li>
+        <li>To live a balanced life</li>
+        <li>Traveling to new countries or places</li>
+        <li>Becoming financially independent</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="side-box-right">
+    <div class="side-photo-frame">
+      <img src="pictures/locket.jpg">
+    </div>
+  </div>
+
+</div>
+
+<footer>
+© 2025 This website is for educational purpose only | Wan Amirah Husni Binti Wan Anuar
+</footer>
+
+<script>
+menuBtn.onclick = () => nav.classList.toggle("open");
+</script>
+
+</body>
+</html>

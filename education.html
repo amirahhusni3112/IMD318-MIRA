@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Education - Amirah</title>
+<style>
+/* 🌸 BASE BODY */
+body {
+  margin:0;
+  font-family: Arial,sans-serif;
+  overflow-x:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding-top:60px;
+
+  background-image: url("pictures/bg2.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center center;
+  background-attachment:fixed;
+}
+
+/* 🌸 HEADING */
+h1 {
+  text-align: center;
+  font-size: 32px;
+  font-family: "Lucida Handwriting", cursive;
+  color: #8f4a63;
+  margin: 20px 0 15px 0;
+  text-shadow: 0 0 8px rgba(186,140,150,0.35);
+}
+
+/* 🌸 MENU BUTTON */
+#menuBtn { 
+  position: fixed;
+  top:20px; left:20px; 
+  padding:10px 20px;
+  border-radius:12px;
+  cursor:pointer;
+  font-family:"Garamond", serif;
+  font-weight:bold;
+  color:#b88a9b;
+  background: linear-gradient(to bottom right, rgba(227,204,214,0.4), rgba(255,255,255,0.6));
+  border: 1.6px solid rgba(185,125,148,0.55);
+  backdrop-filter: blur(6px);
+  z-index:9999;
+}
+
+/* 🌸 NAVIGATION */
+#nav {
+  position:fixed;
+  top:0; left:-230px;
+  width:230px; height:100vh;
+  padding-top:100px;
+  background: linear-gradient(to bottom, rgba(227,204,214,0.35), rgba(255,255,255,0.45));
+  backdrop-filter: blur(12px);
+  border-right:1.6px solid rgba(185,125,148,0.55);
+  font-family:"Garamond", serif;
+  transition:left 0.4s ease;
+  z-index:999;
+}
+#nav.open { left:0; }
+
+.nav-item {
+  padding:14px 25px;
+  cursor:pointer;
+  font-size:16px;
+  color:#b88a9b;
+}
+.nav-item:hover {
+  background: rgba(240,182,193,0.5);
+  border-radius:10px;
+}
+
+/* 🌸 TIMELINE CONTAINER */
+.timeline {
+  width:80%;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  position:relative;
+}
+
+/* 🌸 TIMELINE ITEM */
+.timeline-item {
+  display: flex;
+  flex-direction: column; /* image above text */
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  position: relative;
+}
+
+.timeline-item img {
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:15px;
+  border:3px solid #b88a9b;
+  flex-shrink:0;
+}
+
+.timeline-item .info-text {
+  background: rgba(255,255,255,0.25);
+  border-radius: 25px;
+  padding: 20px;
+  width:300px;
+  color: #5c2a36;
+  border: 1.6px solid rgba(185,125,148,0.55);
+  backdrop-filter: blur(12px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  text-align:center;
+  transition:0.35s ease;
+}
+.timeline-item .info-text:hover {
+  transform: translateY(-6px);
+  box-shadow:0 10px 25px rgba(255,182,193,0.45);
+}
+.timeline-item .info-text h3 {
+  margin:0 0 10px 0;
+  font-size:18px;
+  color:#b88a9b;
+}
+.timeline-item .info-text ul {
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.timeline-item .info-text ul li::before {
+  content:"➤ ";
+  color:#b88a9b;
+  font-weight:bold;
+}
+.timeline-item .info-text ul li {
+  margin-bottom:6px;
+  color:#5c2a36;
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* 🌸 ARROW BETWEEN BOXES */
+.timeline-arrow {
+  font-size: 24px;
+  color: #b88a9b;
+  text-align: center;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+}
+
+/* 🌸 BACK BUTTON */
+.back-btn {
+  display:block;
+  width:150px;
+  margin:40px auto 30px;
+  padding:10px;
+  text-align:center;
+  background:linear-gradient(to bottom right, rgba(227,204,214,0.7), rgba(255,255,255,0.5));
+  border-radius:12px;
+  border:2px solid #b88a9b;
+  color:#5c2a36;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+.back-btn:hover { 
+  background:rgba(255,182,193,0.6); 
+  color:#fff;
+}
+
+/* 🌸 FOOTER */
+footer {
+  text-align:center;
+  padding:15px;
+  background: linear-gradient(to top, rgba(227,204,214,0.35), rgba(255,255,255,0.55));
+  border-top: 1.6px solid rgba(185,125,148,0.55);
+  font-family: "Garamond", serif;
+  color:#b88a9b;
+  margin-top:auto;
+}
+
+/* 🌸 RESPONSIVE */
+@media(max-width:700px){
+  .timeline-item { flex-direction:column !important; align-items:center; }
+  .timeline-item .info-text { width:90%; margin-top:10px; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div id="menuBtn">MENU</div>
+
+<div id="nav">
+  <div class="nav-item" onclick="window.location.href='index.html'"> Home </div>
+  <div class="nav-item" onclick="window.location.href='about me.html'">About Me </div>
+  <div class="nav-item" onclick="window.location.href='experience.html'">Experience </div>
+  <div class="nav-item" onclick="window.location.href='education.html'">Education </div>
+  <div class="nav-item" onclick="window.location.href='family.html'">Family </div>
+  <div class="nav-item" onclick="window.location.href='favourites.html'"> Favourites </div>
+  <div class="nav-item" onclick="window.location.href='friends.html'"> Friends </div>
+  <div class="nav-item" onclick="window.location.href='gallery.html'"> Gallery </div>
+</div>
+
+<h1>⋆˚࿔ My Education Journey 𝜗𝜚˚⋆</h1>
+
+<div class="timeline">
+  <!-- TIMELINE ITEM 1 -->
+  <div class="timeline-item">
+    <img src="pictures/tabika.jpg" alt="Kindergarten">
+    <div class="info-text">
+      <h3>Kindergarten</h3>
+      <ul>
+        <li>Attended Tadika Yayasan Islam Terengganu, Setiu, Terengganu.</li>
+        <li>Learned basic social skills</li>
+        <li>Enjoyed arts, songs, and outdoor play</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="timeline-arrow">⬇︎</div>
+
+  <!-- TIMELINE ITEM 2 -->
+  <div class="timeline-item">
+    <img src="pictures/skbari.jpg" alt="Primary School">
+    <div class="info-text">
+      <h3>Primary School (2012-2017) ♡ˎˊ˗</h3>
+      <ul>
+        <li>Attended Sekolah Kebangsaan Bari Besar (P), Setiu, Terengganu.</li>
+        <li>Focused on core subjects: Math, Science, Bahasa</li>
+        <li>Joined art and cultural clubs</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="timeline-arrow">⬇︎</div>
+
+  <!-- TIMELINE ITEM 3 -->
+  <div class="timeline-item">
+    <img src="pictures/smka.jpg" alt="Secondary School">
+    <div class="info-text">
+      <h3>Secondary School (2018-2023) ♡ˎˊ˗</h3>
+      <ul>
+        <li>Attended Sekolah Menengah Kebangsaan Agama Nurul Ittifaq, Kuala Besut, Besut, Terengganu</li>
+        <li>Enjoy badminton sport</li>
+        <li>Live in a hostel</li>
+        <li>Learned teamwork and leadership skills</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="timeline-arrow">⬇︎</div>
+
+  <!-- TIMELINE ITEM 4 -->
+  <div class="timeline-item">
+    <img src="pictures/uitm.jpg" alt="University">
+    <div class="info-text">
+      <h3>University (2023-2026) ♡ˎˊ˗</h3>
+      <ul>
+        <li>Diploma in Information Management at UiTM Machang, Kelantan</li>
+        <li>Developing soft skills: teamwork, leadership, communication, problem-solving</li>
+        <li>Attending seminars, workshops, and lectures to broaden knowledge</li>
+        <li>Participating in projects and university activities</li>
+        <li>Planning for future career pathways</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<a href="index.html" class="back-btn">⟵ Back</a>
+
+<footer>
+© 2025 This website is for educational purpose only | Wan Amirah Husni Binti Wan Anuar
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const nav = document.getElementById('nav');
+menuBtn.onclick = () => nav.classList.toggle('open');
+</script>
+
+</body>
+</html>

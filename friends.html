@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Friends - Amirah</title>
+<style>
+body {
+  margin:0;
+  background:url("pictures/bg2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* 🌸 HEADING */
+h1 {
+  text-align:center;
+  font-family:"Lucida Handwriting", cursive;
+  color:#8f4a63;
+  margin:30px 0 20px 0;
+  font-size:32px;
+  text-shadow:0 0 8px rgba(186,140,150,0.35);
+}
+
+/* 🌸 MENU BUTTON */
+#menuBtn {
+  position:fixed;
+  top:20px;
+  left:20px;
+  padding:10px 20px;
+  border-radius:12px;
+  cursor:pointer;
+  font-family:"Garamond", serif;
+  font-weight:bold;
+  background:linear-gradient(to bottom right, rgba(227,204,214,0.3), rgba(255,255,255,0.55));
+  border:1.6px solid rgba(185,125,148,0.5);
+  color: #a05f78; /* changed font color */
+  z-index:9999;
+}
+
+/* 🌸 NAVIGATION */
+#nav {
+  position:fixed;
+  top:0;
+  left:-230px;
+  width:230px;
+  height:100vh;
+  padding-top:100px;
+  background:linear-gradient(to bottom, rgba(227,204,214,0.35), rgba(255,255,255,0.45));
+  backdrop-filter:blur(12px);
+  border-right:1.6px solid rgba(185,125,148,0.55);
+  font-family:"Garamond", serif;
+  color: #a05f78; /* changed font color */
+  transition:0.4s;
+  z-index:999;
+}
+#nav.open { left:0; }
+
+.nav-item {
+  padding:14px 25px;
+  font-size:18px;
+  cursor:pointer;
+  color: #a05f78; /* ensure nav items inherit the new color */
+}
+.nav-item:hover {
+  background:rgba(240,218,226,0.6);
+  border-radius:10px;
+}
+
+/* 🌸 MUSIC BUTTON */
+.music-button {
+  position: fixed;
+  top:20px;
+  right:20px;
+  z-index:10000;
+  padding:8px 16px;
+  border:none;
+  border-radius:10px;
+  background-color:rgba(185,125,148,0.7);
+  color:#a05f78;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+.music-button:hover { background-color:rgba(185,125,148,0.9); }
+
+/* 🌸 FRIEND SECTIONS */
+.friend-section {
+  margin:40px auto;
+  max-width:1300px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+/* 🌸 SECTION TITLE */
+.section-title {
+  font-family:"Lucida Handwriting", cursive;
+  font-size:24px;
+  color:#b88a9b;
+  text-align:center;
+  margin-bottom:10px;
+  text-shadow:0 0 6px rgba(186,140,150,0.25);
+}
+
+/* 🌸 SCROLL CONTAINER */
+.friend-row {
+  display:flex;
+  overflow-x:auto;
+  gap:15px;
+  padding:10px;
+  scroll-behavior:smooth;
+}
+.friend-row::-webkit-scrollbar {
+  height:10px;
+}
+.friend-row::-webkit-scrollbar-thumb {
+  background:#b88a9b;
+  border-radius:5px;
+}
+
+/* 🌸 FRIEND BOXES */
+.friend-box {
+  flex:0 0 auto;
+  width:260px;
+  height:260px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1.5px solid rgba(185,125,148,0.55);
+  box-shadow:0 4px 12px rgba(255,182,193,0.25);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor:pointer;
+}
+.friend-box:hover {
+  transform: translateY(-5px);
+  box-shadow:0 8px 20px rgba(185,125,148,0.45);
+}
+.friend-box img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:16px;
+}
+
+/* 🌸 FOOTER */
+footer {
+  text-align:center;
+  padding:15px;
+  margin-top:40px;
+  background:linear-gradient(to top, rgba(227,204,214,0.3), rgba(255,255,255,0.5));
+  border-top:1.6px solid rgba(185,125,148,0.55);
+  font-family:"Garamond", serif;
+  color:#a87c6d;
+}
+
+/* 🌸 RESPONSIVE */
+@media(max-width:900px){
+  .friend-box { width:200px; height:200px; }
+}
+</style>
+</head>
+<body>
+
+<div id="menuBtn">MENU</div>
+<div id="nav">
+  <div class="nav-item" onclick="window.location.href='index.html'">Home</div>
+  <div class="nav-item" onclick="window.location.href='about me.html'">About Me</div>
+  <div class="nav-item" onclick="window.location.href='experience.html'">Experience</div>
+  <div class="nav-item" onclick="window.location.href='education.html'">Education</div>
+  <div class="nav-item" onclick="window.location.href='family.html'">Family</div>
+  <div class="nav-item" onclick="window.location.href='favourites.html'">Favourites</div>
+  <div class="nav-item" onclick="window.location.href='friends.html'">Friends</div>
+  <div class="nav-item" onclick="window.location.href='gallery.html'">Gallery</div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="Bunga Abadi - Rio Clappy.m4A" type="audio/mpeg">
+</audio>
+<button class="music-button" onclick="toggleMusic()">. ♬ ݁˖ </button>
+
+<h1>⋆˚࿔ My Friends 𝜗𝜚˚⋆</h1>
+
+<!-- 🌸 HIGHSCHOOL FRIENDS -->
+<div class="friend-section">
+  <div class="section-title">Highschool Friends</div>
+  <div class="friend-row" id="highschool-row">
+    
+    
+    <div class="friend-box"><img src="pictures/s4.jpg"></div>
+    <div class="friend-box"><img src="pictures/s5.jpg"></div>
+    <div class="friend-box"><img src="pictures/s6.jpg"></div>
+    <div class="friend-box"><img src="pictures/s7.jpg"></div>
+    
+    <div class="friend-box"><img src="pictures/s9.jpg"></div>
+    
+    <div class="friend-box"><img src="pictures/s11.jpg"></div>
+    <div class="friend-box"><img src="pictures/s12.jpg"></div>
+    <div class="friend-box"><img src="pictures/s13.jpg"></div>
+    
+    <div class="friend-box"><img src="pictures/s15.jpg"></div>
+  </div>
+</div>
+
+<!-- 🌸 UNIVERSITY FRIENDS -->
+<div class="friend-section">
+  <div class="section-title">University Friends</div>
+  <div class="friend-row" id="university-row">
+    <div class="friend-box"><img src="pictures/u1.jpg"></div>
+    <div class="friend-box"><img src="pictures/u2.jpg"></div>
+
+    <div class="friend-box"><img src="pictures/u4.jpg"></div>
+    <div class="friend-box"><img src="pictures/u5.jpg"></div>
+    
+    <div class="friend-box"><img src="pictures/u7.jpg"></div>
+    
+    
+    
+    <div class="friend-box"><img src="pictures/u11.jpg"></div>
+    <div class="friend-box"><img src="pictures/u12.jpg"></div>
+    
+    <div class="friend-box"><img src="pictures/u14.jpg"></div>
+    <div class="friend-box"><img src="pictures/u15.jpg"></div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 This website is for educational purpose only | Wan Amirah Husni Binti Wan Anuar
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const nav = document.getElementById('nav');
+menuBtn.addEventListener('click', () => nav.classList.toggle('open'));
+
+function toggleMusic() {
+  const music = document.getElementById('bgMusic');
+  if(music.paused) music.play();
+  else music.pause();
+}
+</script>
+
+</body>
+</html>
